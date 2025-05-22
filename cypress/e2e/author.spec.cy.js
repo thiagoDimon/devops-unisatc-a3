@@ -1,5 +1,9 @@
-describe('template spec', () => {
-  it('passes', () => {
-    cy.login('admin@satc.edu.br', 'welcomeToStrapi123');
-  })
-})
+describe('Testes do Usuário Author', () => {
+  before(() => {
+    cy.visit('http://localhost:1337/');
+  });
+
+  it('Cadastrando um artigo', () => {
+    cy.get('[input]');
+  });
+});
