@@ -1,5 +1,6 @@
 describe('Testes do Usuário Editor', () => {
   before(() => {
+    cy.visit('http://localhost:1337/');
     cy.login('editor@satc.edu.br', 'welcomeToStrapi123');
   });
 
