@@ -1,9 +1,9 @@
-describe('User CRUD', () => {
+describe('Testes do Usuário Administrador', () => {
   beforeEach(() => {
     cy.visit('http://localhost:1337/');
     cy.login('admin@satc.edu.br', 'welcomeToStrapi123');
   })
-  it('Cadastrar User', () => {
+  it('Cadastrando Usuário', () => {
     cy.get('[aria-label="Content Manager"]').click();
     cy.contains('span', 'User').click();
     cy.contains('span', 'Create new entry').click();
@@ -16,14 +16,15 @@ describe('User CRUD', () => {
     cy.contains('p', 'Success:').should('be.visible')
     cy.contains('p', 'Saved document').should('be.visible')
   });
-  it('Verificar User Cadastrado', () => {
+
+  it('Verificando Cadastro Usuário', () => {
     cy.get('[aria-label="Content Manager"]').click();
     cy.contains('span', 'User').click();
     cy.get('tbody tr td')
       .contains('meuusuario@example.com')
       .should('exist');
   });
-  it.only('Editar User', () => {
+  it.only('Editando Cadastro Usuário', () => {
     cy.get('[aria-label="Content Manager"]').click();
     cy.contains('span', 'User').click();
     cy.get('tbody tr').each(($row) => {

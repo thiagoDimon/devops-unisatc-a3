@@ -33,4 +33,31 @@ describe('Testes do Usuário Editor', () => {
     cy.get('.rROPR').click();
     cy.get('footer > button > span').contains('Confirm').click();
   })
+
+  it('Cadastrando categoria', () => {
+    cy.get('a[aria-label="Content Manager"]').click();
+    cy.get('a > div > span').contains('Categoria').click();
+    cy.get('span').contains('Create new entry').click();
+    cy.get('input[name="name"]').type('Ficção Científica');
+    cy.get('input[name="slug"]').type('ficcao-cientifica');
+    cy.get('textarea[name="description"]').type('Livros que exploram narrativas baseadas em avanços científicos e tecnológicos, geralmente ambientados em cenários futuristas ou alternativos.');
+    cy.get('button > span').contains('Save').click();
+  })
+
+  it('Editando categoria', () => {
+    cy.get('a[aria-label="Content Manager"]').click();
+    cy.get('a > div > span').contains('Categoria').click();
+    cy.get('[aria-rowindex="3"]').click();
+    cy.get('input[name="name"]').clear().type('Ficção Científica Alterado');
+    cy.get('input[name="slug"]').clear().type('ficcao-cientifica-alterado');
+    cy.get('button > span').contains('Save').click();
+  })
+
+  it('Deletando categoria', () => {
+    cy.get('a[aria-label="Content Manager"]').click();
+    cy.get('a > div > span').contains('Categoria').click();
+    cy.get('[aria-rowindex="2"]').click();
+    cy.get('.rROPR').click();
+    cy.get('footer > button > span').contains('Confirm').click();
+  })
 });
