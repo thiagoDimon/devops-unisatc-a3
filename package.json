@@ -14,7 +14,7 @@
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "tests": "cypress run --spec \"cypress/e2e/user.spec.cy.js,cypress/e2e/editor.spec.cy.js,cypress/e2e/author.spec.cy.js\"",
+    "tests": "/run/current-system/sw/bin/cypress run --spec \"cypress/e2e/user.spec.cy.js,cypress/e2e/editor.spec.cy.js,cypress/e2e/author.spec.cy.js\"",
     "test-user": "cypress run --spec \"cypress/e2e/user.spec.cy.js\"",
     "test-editor": "cypress run --spec \"cypress/e2e/editor.spec.cy.js\"",
     "test-author": "cypress run --spec \"cypress/e2e/author.spec.cy.js\""
