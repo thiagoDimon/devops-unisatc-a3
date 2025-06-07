@@ -17,7 +17,8 @@
     "tests": "cypress run --headless --spec \"cypress/e2e/user.spec.cy.js,cypress/e2e/editor.spec.cy.js,cypress/e2e/author.spec.cy.js\" --browser chrome",
     "test-user": "cypress run --spec \"cypress/e2e/user.spec.cy.js\"",
     "test-editor": "cypress run --spec \"cypress/e2e/editor.spec.cy.js\"",
-    "test-author": "cypress run --spec \"cypress/e2e/author.spec.cy.js\""
+    "test-author": "cypress run --spec \"cypress/e2e/author.spec.cy.js\"",
+    "ci:e2": "start-server-and-test start http://localhost:1337 tests"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.3",

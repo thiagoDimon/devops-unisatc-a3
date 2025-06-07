@@ -39,8 +39,5 @@ jobs:
       - name: Build Strapi
         run: npm run build
 
-      - name: Start Strapi
-        run: npm run start
-
       - name: Run e2e tests
-        run: npm run tests
+        run: npm run ci:e2e
