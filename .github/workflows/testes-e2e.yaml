@@ -2,27 +2,12 @@ name: Testes E2E
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
 
 jobs:
   e2e:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:13
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: strapi
-          POSTGRES_PASSWORD: strapi
-          POSTGRES_DB: strapi
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - name: Checkout código
@@ -31,31 +16,13 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Instalar dependências
         run: npm install
 
-      - name: Build Strapi (se necessário)
-        run: npm run build
-
-      - name: Iniciar Strapi em segundo plano
-        run: |
-          nohup npm run develop > strapi.log 2>&1 &
-          sleep 5
-
-      - name: Esperar Strapi estar pronto
-        run: |
-          echo "Aguardando Strapi responder em http://localhost:1337..."
-          for i in {1..30}; do
-            if curl -s http://localhost:1337 | grep -q "<a href="; then
-              echo "✅ Strapi está pronto!"
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "❌ Strapi não respondeu a tempo"
-          exit 1
+      - name: Start Strapi
+        run: npm run start
 
       - name: Executar testes Cypress
-        run: npx cypress run --spec "cypress/e2e/user.spec.cy.js,cypress/e2e/editor.spec.cy.js,cypress/e2e/author.spec.cy.js"
+        run: npm run tests
