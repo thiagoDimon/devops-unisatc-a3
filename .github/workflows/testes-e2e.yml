@@ -1,10 +1,10 @@
-name: CI Pipeline
+name: Testes e2e
 
 on:
   push:
-    branches: [main, feature-ci-pipe, feature*]
+    branches: [main]
   pull_request:
-    branches: [main, feature-ci-pipe, feature*]
+    branches: [main]
 
 jobs:
   test:
@@ -36,8 +36,11 @@ jobs:
           echo "DATABASE_CLIENT=sqlite" >> .env
           echo "DATABASE_FILENAME=.tmp/data.db" >> .env
 
-      - name: Build admin UI
+      - name: Build Strapi
         run: npm run build
 
+      - name: Start Strapi
+        run: npm run start
+
       - name: Run e2e tests
-        run: npm run ci:e2e
+        run: npm run tests

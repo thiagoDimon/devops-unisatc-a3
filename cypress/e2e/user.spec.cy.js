@@ -1,8 +1,14 @@
 describe('Testes do Usuário Administrador', () => {
+  let esperaStrapiCarregar = true;
   beforeEach(() => {
+    if (esperaStrapiCarregar) {
+      cy.wait(25000);
+      esperaStrapiCarregar = false;
+    }
     cy.visit('http://localhost:1337/');
     cy.login('admin@satc.edu.br', 'welcomeToStrapi123');
   })
+
   it('Cadastrando Usuário', () => {
     cy.get('[aria-label="Content Manager"]').click();
     cy.contains('span', 'User').click();
@@ -24,6 +30,7 @@ describe('Testes do Usuário Administrador', () => {
       .contains('meuusuario@example.com')
       .should('exist');
   });
+
   it.only('Editando Cadastro Usuário', () => {
     cy.get('[aria-label="Content Manager"]').click();
     cy.contains('span', 'User').click();
