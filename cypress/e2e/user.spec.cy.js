@@ -1,10 +1,5 @@
 describe('Testes do Usuário Administrador', () => {
-  let esperaStrapiCarregar = true;
   beforeEach(() => {
-    if (esperaStrapiCarregar) {
-      cy.wait(25000);
-      esperaStrapiCarregar = false;
-    }
     cy.visit('http://localhost:1337/');
     cy.login('admin@satc.edu.br', 'welcomeToStrapi123');
   })

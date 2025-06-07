@@ -17,7 +17,7 @@ describe('Testes do Usuário Author', () => {
   cy.get('a[aria-label="Content Manager"]').click();
   cy.get('a > div > span').contains('Artigo').click();
   cy.get('td[role="gridcell"]:last > button').click();
-  cy.get('.rROPR').click();
+  cy.get('span').contains('Delete entry').click();
   cy.get('footer > button > span').contains('Confirm').click();
 })
 });
