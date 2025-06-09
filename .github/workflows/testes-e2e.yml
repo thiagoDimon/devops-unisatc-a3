@@ -86,7 +86,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: ${{ github.event.pull_request.user.login }}
+          approvers: Castrozan
           minimum-approvals: 1
           issue-title: "Approve Docker Publish"
           issue-body: "Please comment 'approve' or 'deny' to proceed."
