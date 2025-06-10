@@ -13,7 +13,12 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "tests": "cypress run --headless --spec \"cypress/e2e/user.spec.cy.js,cypress/e2e/editor.spec.cy.js,cypress/e2e/author.spec.cy.js\" --browser chrome",
+    "test-user": "cypress run --spec \"cypress/e2e/user.spec.cy.js\"",
+    "test-editor": "cypress run --spec \"cypress/e2e/editor.spec.cy.js\"",
+    "test-author": "cypress run --spec \"cypress/e2e/author.spec.cy.js\"",
+    "ci:e2e": "start-server-and-test start http://localhost:1337 tests"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.3",
@@ -31,7 +36,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5"
+    "cypress": "^14.4.0",
+    "typescript": "^5",
+    "start-server-and-test": "^2.0.4"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
