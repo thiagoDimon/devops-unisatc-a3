@@ -118,6 +118,24 @@ resource "aws_security_group" "ecs" {
   }
 }
 
+# Security Group for VPC Endpoint
+resource "aws_security_group" "vpc_endpoint_sg" {
+  name        = "${var.app_name}-vpc-endpoint-sg"
+  description = "Security group for VPC endpoints"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block] # Allow traffic from within the VPC
+  }
+
+  tags = {
+    Name = "${var.app_name}-vpc-endpoint-sg"
+  }
+}
+
 # Application Load Balancer
 resource "aws_lb" "main" {
   name               = "${var.app_name}-alb"
@@ -261,8 +279,9 @@ resource "aws_ecs_service" "app" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    security_groups = [aws_security_group.ecs.id]
-    subnets         = aws_subnet.public[*].id
+    subnets          = aws_subnet.public[*].id
+    security_groups  = [aws_security_group.ecs.id]
+    assign_public_ip = false
   }
 
   load_balancer {
@@ -371,4 +390,30 @@ resource "aws_ssm_parameter" "jwt_secret" {
 # Data sources
 data "aws_availability_zones" "available" {
   state = "available"
+}
+
+# VPC Endpoints
+resource "aws_vpc_endpoint" "ssm" {
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.${var.aws_region}.ssm"
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  security_group_ids  = [aws_security_group.vpc_endpoint_sg.id]
+  subnet_ids          = aws_subnet.public[*].id
+}
+
+resource "aws_vpc_endpoint" "ecr_api" {
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.${var.aws_region}.ecr.api"
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  security_group_ids  = [aws_security_group.vpc_endpoint_sg.id]
+  subnet_ids          = aws_subnet.public[*].id
+}
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${var.aws_region}.s3"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids   = [aws_route_table.public.id]
 } 
