@@ -1,3 +1,4 @@
+a
 # AWS Deployment with Terraform
 
 This directory contains Terraform configuration to deploy the Strapi application to AWS using ECS Fargate.
