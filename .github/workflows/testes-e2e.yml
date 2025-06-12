@@ -130,7 +130,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: Castrozan, thiagoDimon
+          approvers: Castrozan
           minimum-approvals: 1
           issue-title: "Approve AWS Deployment"
           issue-body: "Please comment 'approve' or 'deny' to deploy to AWS."
