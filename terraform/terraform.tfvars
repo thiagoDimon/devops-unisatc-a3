@@ -1,0 +1,6 @@
+docker_image        = "castrozan/devops-strapi:latest"
+app_keys            = "ImJMpHjnCdJw4ii7jZzCXQ==,Jg239VoMach6Fh2LAH6ydA==,LAdmPTwE8oqyVjAV4pCkBQ==,f1gPGngKmE5xhyDktSpCVw=="
+api_token_salt      = "X2d0C6rgXwWgwEZCslZN0A=="
+admin_jwt_secret    = "deEi8rGl7WB43uXiaYPaOg=="
+transfer_token_salt = "vhsZEWfU3anLONbLZXZfqg=="
+jwt_secret          = "U2Nh9O8oDdw6gzXqWbg5Eg=="
