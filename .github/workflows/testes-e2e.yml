@@ -84,7 +84,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: Castrozan
+          approvers: Castrozan, thiagoDimon
           minimum-approvals: 1
           issue-title: "Approve Docker Publish"
           issue-body: "Please comment 'approve' or 'deny' to proceed."
@@ -130,7 +130,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: Castrozan
+          approvers: Castrozan, thiagoDimon
           minimum-approvals: 1
           issue-title: "Approve AWS Deployment"
           issue-body: "Please comment 'approve' or 'deny' to deploy to AWS."
