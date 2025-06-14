@@ -1,0 +1,6 @@
+docker_image        = "your-docker-image:tag"
+app_keys            = "your-strapi-app-keys"
+api_token_salt      = "your-strapi-api-token-salt"
+admin_jwt_secret    = "your-strapi-admin-jwt-secret"
+transfer_token_salt = "your-strapi-transfer-token-salt"
+jwt_secret          = "your-strapi-jwt-secret" 
